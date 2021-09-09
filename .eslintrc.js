@@ -4,7 +4,7 @@ module.exports = {
     node: true,
     browser: true
   },
-  extends: ['plugin:react/recommended', 'standard', 'standard-react'],
+  extends: ['plugin:react/recommended', 'standard', 'standard-jsx', 'standard-react'],
   plugins: ['react', 'react-hooks'],
   parserOptions: {
     ecmaVersion: 2021,

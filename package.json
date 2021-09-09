@@ -1,14 +1,37 @@
 {
   "name": "coupe-video",
+  "private": true,
   "packageManager": "yarn@3.0.2",
+  "version": "1.0.0-alpha.0",
+  "license": "Apache-2.0",
+  "description": "WebAssembly-powered video cutter in the browser.",
+  "repository": "https://github.com/retrixe/coupe-video.git",
+  "author": "Ibrahim Ansari <ansari.ibrahim1@gmail.com>",
   "scripts": {
     "start": "next start",
     "build": "next build",
+    "lint": "eslint .",
     "dev": "next"
   },
   "dependencies": {
+    "@ffmpeg/core": "^0.10.0",
+    "@ffmpeg/ffmpeg": "^0.10.1",
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^11.1.2",
+    "@types/react": "^17.0.20",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-config-standard-react": "^11.0.1",
+    "eslint-import-resolver-node": "^0.3.6",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.2"
   }
 }

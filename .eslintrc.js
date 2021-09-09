@@ -12,6 +12,7 @@ module.exports = {
     ecmaFeatures: { jsx: true, impliedStrict: true }
   },
   rules: {
+    'react/prop-types': 'off', // TODO: Switch to TypeScript.
     // React Hooks rules.
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',

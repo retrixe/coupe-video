@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
+import { NextPage } from 'next'
 import ffmpegCut from '../imports/ffmpegCut'
 import Title from '../imports/title'
 
 import styles from './index.module.scss'
 
-const secondsToString = (totalSeconds) => {
+const secondsToString = (totalSeconds: number): string => {
   const seconds = totalSeconds % 60
   const totalMinutes = Math.floor(seconds / 60)
   const minutes = totalMinutes % 60
@@ -15,17 +16,18 @@ const secondsToString = (totalSeconds) => {
   return `${hoursString}:${minutesString}:${secondsString}`
 }
 
-const Index = () => {
-  const videoRef = useRef(null)
-  const inputRef = useRef(null)
-  const [fileInView, setFileInView] = useState(null)
-  const [originalFile, setOriginalFile] = useState(null)
-  const [currentView, setCurrentView] = useState('')
-  const [startTime, setStartTime] = useState('')
-  const [endTime, setEndTime] = useState('')
-  const [loading, setLoading] = useState(false)
+const Index: NextPage = () => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [fileInView, setFileInView] = useState<[Blob, string] | null>(null)
+  const [originalFile, setOriginalFile] = useState<[Blob, string] | null>(null)
+  const [currentView, setCurrentView] = useState<'' | 'Edited' | 'Original'>('')
+  const [startTime, setStartTime] = useState<string>('')
+  const [endTime, setEndTime] = useState<string>('')
+  const [loading, setLoading] = useState<boolean | string>(false)
 
   const handleCut = async () => {
+    if (!fileInView) return
     try {
       setLoading(true)
       const blob = await ffmpegCut(fileInView[0], startTime, endTime)
@@ -45,13 +47,13 @@ const Index = () => {
     setFileInView(originalFile)
   }
 
-  const handleStartTimeToCurrent = () => setStartTime(secondsToString(videoRef.current.currentTime))
-  const handleEndTimeToCurrent = () => setEndTime(secondsToString(videoRef.current.currentTime))
-  const handleSetStartTime = e => {
+  const handleStartTimeToCurrent = () => setStartTime(secondsToString(videoRef.current?.currentTime ?? 0))
+  const handleEndTimeToCurrent = () => setEndTime(secondsToString(videoRef.current?.currentTime ?? 0))
+  const handleSetStartTime = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     if (/^[0-9]{0,2}(:[0-9]{0,2}(:[0-9]{0,2})?)?$/.test(value)) setStartTime(value)
   }
-  const handleSetEndTime = e => {
+  const handleSetEndTime = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     if (/^[0-9]{0,2}(:[0-9]{0,2}(:[0-9]{0,2})?)?$/.test(value)) setEndTime(value)
   }
@@ -113,7 +115,7 @@ const Index = () => {
             </>
             )}
         {fileInView && <br />}
-        <button className='button-primary' onClick={() => inputRef.current.click()}>Select File</button>
+        <button className='button-primary' onClick={() => inputRef.current?.click()}>Select File</button>
         <input
           type='file'
           ref={inputRef}
@@ -121,7 +123,7 @@ const Index = () => {
           style={{ display: 'none' }}
           onChange={e => {
             const files = e.target.files
-            if (files.length >= 1) {
+            if (files && files.length >= 1) {
               setCurrentView('')
               setFileInView([files[0], URL.createObjectURL(files[0])])
               setOriginalFile([files[0], URL.createObjectURL(files[0])])

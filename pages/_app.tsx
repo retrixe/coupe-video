@@ -5,6 +5,9 @@ import './global.scss'
 
 // TODO: More meta tags.
 
-export default function MyApp ({ Component, pageProps }) {
+export default function MyApp ({ Component, pageProps }: {
+  Component: React.FunctionComponent
+  pageProps: any
+}) {
   return <Component {...pageProps} />
 }

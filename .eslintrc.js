@@ -15,6 +15,9 @@ module.exports = {
     // React Hooks rules.
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    // Make TypeScript ESLint less strict.
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/triple-slash-reference': 'off',
     // Allow no-multi-str.
     'no-multi-str': 'off'

@@ -1,7 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
 
-export default function Title ({ title, description, url }) {
+export default function Title ({ title, description, url }: {
+  title: string
+  description: string
+  url: string
+}): JSX.Element {
   return (
     <Head>
       <title>{title}</title>

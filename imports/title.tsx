@@ -5,7 +5,7 @@ export default function Title ({ title, description, url }: {
   title: string
   description: string
   url: string
-}): JSX.Element {
+}) {
   return (
     <Head>
       <title>{title}</title>

@@ -19,8 +19,6 @@
     "jsx": "preserve"
   },
   "include": [
-    "pages/**/*",
-    "imports/**/*",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"

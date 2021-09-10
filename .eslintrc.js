@@ -4,20 +4,19 @@ module.exports = {
     node: true,
     browser: true
   },
-  extends: ['plugin:react/recommended', 'standard', 'standard-jsx', 'standard-react'],
-  plugins: ['react', 'react-hooks'],
+  extends: ['plugin:react/recommended', 'standard-with-typescript', 'standard-react', 'standard-jsx'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2021,
-    sourceType: 'module',
-    ecmaFeatures: { jsx: true, impliedStrict: true }
+    project: './tsconfig.json'
   },
+  ignorePatterns: ['.eslintrc.js'],
   rules: {
-    'react/prop-types': 'off', // TODO: Switch to TypeScript.
     // React Hooks rules.
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    '@typescript-eslint/triple-slash-reference': 'off',
     // Allow no-multi-str.
-    'no-multi-str': 'off',
-    'react/jsx-indent': ['error', 2, { checkAttributes: true, indentLogicalExpressions: true }]
+    'no-multi-str': 'off'
   }
 }

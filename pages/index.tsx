@@ -24,7 +24,7 @@ const Index: NextPage = () => {
   const [currentView, setCurrentView] = useState<'' | 'Edited' | 'Original'>('')
   const [startTime, setStartTime] = useState<string>('')
   const [endTime, setEndTime] = useState<string>('')
-  const [loading, setLoading] = useState<boolean | string>(false)
+  const [loading, setLoading] = useState<boolean | null>(null)
 
   const handleCut = async () => {
     if (!fileInView) return
@@ -37,7 +37,7 @@ const Index: NextPage = () => {
       setLoading(false)
     } catch (e) {
       console.error(e)
-      setLoading('')
+      setLoading(null)
     }
   }
 
@@ -100,8 +100,8 @@ const Index: NextPage = () => {
         </div>
         <button className='button-primary' disabled={!fileInView} onClick={handleCut}>Cut Video</button>
         {currentView && <button className={styles['left-width']} onClick={handleToggle}>Return to {currentView}</button>}
-        {loading && typeof loading !== 'string' && <h6>Cutting the video in your browser..</h6>}
-        {typeof loading === 'string' && <h6>An error occurred when cutting the video.</h6>}
+        {loading && <h6>Cutting the video in your browser..</h6>}
+        {loading === null && <h6>An error occurred when cutting the video. Check console for details.</h6>}
         <hr />
         {fileInView
           ? <video ref={videoRef} width={document.body.clientWidth - 64} controls src={fileInView[1]} />

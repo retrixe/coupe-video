@@ -15,9 +15,9 @@ const secondsToString = (totalSeconds) => {
   return `${hoursString}:${minutesString}:${secondsString}`
 }
 
-// TODO: Titles and HTML5 meta.
 const Index = () => {
   const videoRef = useRef(null)
+  const inputRef = useRef(null)
   const [fileInView, setFileInView] = useState(null)
   const [originalFile, setOriginalFile] = useState(null)
   const [currentView, setCurrentView] = useState('')
@@ -47,6 +47,14 @@ const Index = () => {
 
   const handleStartTimeToCurrent = () => setStartTime(secondsToString(videoRef.current.currentTime))
   const handleEndTimeToCurrent = () => setEndTime(secondsToString(videoRef.current.currentTime))
+  const handleSetStartTime = e => {
+    const value = e.target.value
+    if (/^[0-9]{0,2}(:[0-9]{0,2}(:[0-9]{0,2})?)?$/.test(value)) setStartTime(value)
+  }
+  const handleSetEndTime = e => {
+    const value = e.target.value
+    if (/^[0-9]{0,2}(:[0-9]{0,2}(:[0-9]{0,2})?)?$/.test(value)) setEndTime(value)
+  }
 
   return (
     <>
@@ -70,7 +78,7 @@ const Index = () => {
         <div>
           <label htmlFor='startTimeInput'>Start Time</label>
           <input
-            value={startTime} onChange={e => setStartTime(e.target.value)}
+            value={startTime} onChange={handleSetStartTime}
             className='u-full-width' placeholder='hh:mm:ss' id='startTimeInput'
           />
         </div>
@@ -84,7 +92,7 @@ const Index = () => {
         <div>
           <label htmlFor='endTimeInput'>End Time</label>
           <input
-            value={endTime} onChange={e => setEndTime(e.target.value)}
+            value={endTime} onChange={handleSetEndTime}
             className='u-full-width' placeholder='hh:mm:ss' id='endTimeInput'
           />
         </div>
@@ -104,6 +112,22 @@ const Index = () => {
               </h4>
             </>
             )}
+        {fileInView && <br />}
+        <button className='button-primary' onClick={() => inputRef.current.click()}>Select File</button>
+        <input
+          type='file'
+          ref={inputRef}
+          accept='video/mp4,video/mpeg2,video/x-m4v,video/webm,video/mpeg,video/ogg,video/*'
+          style={{ display: 'none' }}
+          onChange={e => {
+            const files = e.target.files
+            if (files.length >= 1) {
+              setCurrentView('')
+              setFileInView([files[0], URL.createObjectURL(files[0])])
+              setOriginalFile([files[0], URL.createObjectURL(files[0])])
+            }
+          }}
+        />
       </div>
     </>
   )

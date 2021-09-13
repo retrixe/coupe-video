@@ -1,0 +1,22 @@
+{
+  "short_name": "Coupe-vidéo",
+  "name": "Coupe-vidéo",
+  "icons": [
+    { "src": "/maskable_512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" },
+    { "src": "/maskable_192.png", "type": "image/png", "sizes": "192x192", "purpose": "maskable" },
+    { "src": "/maskable_128.png", "type": "image/png", "sizes": "128x128", "purpose": "maskable" },
+    { "src": "/favicon_512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "/favicon_256.png", "type": "image/png", "sizes": "256x256", "purpose": "any" },
+    { "src": "/favicon_192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" }
+  ],
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#33C3F0",
+  "background_color": "#33C3F0",
+  "description": "WebAssembly-powered video cutter in the browser.",
+  "screenshots": [
+    { "src": "/images/screenshot1.png", "type": "image/png", "sizes": "1080x1440" },
+    { "src": "/images/screenshot2.png", "type": "image/png", "sizes": "1080x1440" }
+  ]
+}

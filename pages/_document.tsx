@@ -1,7 +1,7 @@
 import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-const ico = '/favicon_256.png'
+const ico = '/images/favicon_256.png'
 
 export default class MyDocument extends Document {
   render () {

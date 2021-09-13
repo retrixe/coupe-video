@@ -8,6 +8,13 @@ export default function App ({ Component, pageProps }: {
   Component: React.FunctionComponent
   pageProps: any
 }) {
+  React.useEffect(() => {
+    if ('serviceWorker' in navigator && process.env.NODE_ENV !== 'development') {
+      navigator.serviceWorker.register('/sw.js')
+        .catch(err => console.log('Service worker registration failed: ', err))
+    }
+  }, [])
+
   return (
     <>
       <Head>

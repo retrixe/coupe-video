@@ -24,7 +24,7 @@ const Index: NextPage = () => {
   const [currentView, setCurrentView] = useState<'' | 'Edited' | 'Original'>('')
   const [startTime, setStartTime] = useState<string>('')
   const [endTime, setEndTime] = useState<string>('')
-  const [loading, setLoading] = useState<boolean | null>(null)
+  const [loading, setLoading] = useState<boolean | null>(false)
 
   const handleCut = async () => {
     if (!fileInView) return

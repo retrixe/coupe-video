@@ -7,9 +7,9 @@ import styles from './index.module.scss'
 
 const secondsToString = (totalSeconds: number): string => {
   const seconds = totalSeconds % 60
-  const totalMinutes = Math.floor(seconds / 60)
+  const totalMinutes = Math.floor(totalSeconds / 60)
   const minutes = totalMinutes % 60
-  const totalHours = Math.floor(minutes / 60)
+  const totalHours = Math.floor(totalMinutes / 60)
   const secondsString = Math.floor(seconds).toString().padStart(2, '0')
   const minutesString = minutes.toString().padStart(2, '0')
   const hoursString = totalHours.toString().padStart(2, '0')
